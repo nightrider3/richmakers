@@ -1,226 +1,520 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Srpska Pravoslavna Crkva & Duhovno Kulturni Centar</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#B01C22;--red2:#8B1418;--red3:#D42B32;
+  --redpale:#FAF0F0;--redmid:#F0D5D5;
+  --gold:#A8822A;--goldlight:#E8D5A0;--goldpale:#FBF5E6;
+  --ink:#1A0A0A;--ink2:#2D1A1A;
+  --stone:#F7F4F1;--stone2:#EDE8E0;--stone3:#DDD6CA;
+  --muted:#7A6060;--border:rgba(176,28,34,0.12);
+  --r:8px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--stone);color:var(--ink);overflow-x:hidden;line-height:1.6}
 
-    <title>Pop HTML CSS Template</title>
-<!--
+/* ── LANG ── */
+.lang-bar{background:var(--red2);display:flex;justify-content:flex-end;gap:4px;padding:7px 44px;position:sticky;top:0;z-index:100;align-items:center}
+.lb{background:transparent;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.5);font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.07em;padding:4px 13px;border-radius:100px;cursor:pointer;transition:all .2s}
+.lb.on{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.5);color:#fff;font-weight:500}
+.lb:hover:not(.on){color:#fff;border-color:rgba(255,255,255,0.35)}
+.lsep{color:rgba(255,255,255,0.15);font-size:12px}
 
-Template 2097 Pop
+/* ── HERO ── */
+.hero{background:var(--red2);color:#fff;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;min-height:88vh}
+.hero-l{display:flex;flex-direction:column;justify-content:center;padding:72px 56px 100px 64px;position:relative;z-index:2}
+.hero-r{position:relative;background:var(--red);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-r::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,0.025) 0,rgba(255,255,255,0.025) 1px,transparent 1px,transparent 48px),repeating-linear-gradient(90deg,rgba(255,255,255,0.025) 0,rgba(255,255,255,0.025) 1px,transparent 1px,transparent 48px)}
+.hero-overline{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.hero-overline::before{content:'';width:28px;height:1px;background:rgba(232,213,160,0.6)}
+.hero-h1{font-family:'Cinzel',serif;font-size:clamp(22px,3.2vw,46px);font-weight:700;line-height:1.12;letter-spacing:.01em;margin-bottom:6px}
+.hero-h1 .sub-line{font-family:'Libre Baskerville',serif;font-size:clamp(13px,1.7vw,20px);font-weight:400;font-style:italic;color:rgba(255,255,255,0.6);display:block;margin-top:10px;letter-spacing:0}
+.hero-desc{font-size:15px;color:rgba(255,255,255,0.58);max-width:420px;line-height:1.88;margin-top:28px}
+.hero-actions{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap}
+.btn-w{background:#fff;color:var(--red2);font-family:'Inter',sans-serif;font-weight:500;font-size:13px;padding:13px 26px;border-radius:var(--r);border:none;cursor:pointer;transition:all .2s}
+.btn-w:hover{background:var(--goldpale);transform:translateY(-1px)}
+.btn-g{background:transparent;color:rgba(255,255,255,0.7);font-size:13px;padding:13px 26px;border-radius:var(--r);border:1px solid rgba(255,255,255,0.25);cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+.btn-g:hover{border-color:rgba(255,255,255,0.55);color:#fff}
 
-https://www.tooplate.com/view/2097-pop
+.hero-cross-wrap{position:relative;z-index:1;animation:floatCross 7s ease-in-out infinite}
+@keyframes floatCross{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
 
--->
-    <!-- load CSS -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300">  <!-- Google web font "Open Sans" -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">                                  <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="fontawesome/css/fontawesome-all.min.css">                <!-- https://fontawesome.com/ -->
-    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>                       <!-- http://kenwheeler.github.io/slick/ -->
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-    <link rel="stylesheet" href="css/tooplate-style.css">                               <!-- Templatemo style -->
+.hero-stats{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.32);display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid rgba(255,255,255,0.1)}
+.hs{padding:18px 20px;text-align:center;border-right:1px solid rgba(255,255,255,0.08)}
+.hs:last-child{border-right:none}
+.hs-val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--goldlight)}
+.hs-lbl{font-size:10px;color:rgba(255,255,255,0.38);margin-top:3px;letter-spacing:.07em}
 
-    <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this in a modern browser such as latest version of Chrome or Microsoft Edge.");</script>
-    
+/* ── PROGRESS ── */
+.prog-band{background:#fff;border-top:4px solid var(--red);border-bottom:1px solid var(--border)}
+.prog-inner{max-width:1140px;margin:0 auto;padding:30px 44px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:40px}
+.pi-num{font-family:'Cinzel',serif;font-size:34px;font-weight:700;color:var(--red);line-height:1}
+.pi-lbl{font-size:11px;color:var(--muted);margin-top:4px}
+.pi-track{background:var(--stone2);border-radius:100px;height:10px;overflow:hidden}
+.pi-fill{height:100%;background:linear-gradient(90deg,var(--red2),var(--red3));border-radius:100px;width:0;transition:width 2s cubic-bezier(.17,.67,.35,1)}
+.pi-meta{display:flex;justify-content:space-between;margin-top:6px}
+.pi-meta span,.pi-meta b{font-size:12px;color:var(--muted)}
+.pi-meta b{color:var(--red)}
+.pi-goal-num{font-family:'Cinzel',serif;font-size:26px;font-weight:700;color:var(--ink);line-height:1;text-align:right}
+.pi-goal-lbl{font-size:11px;color:var(--muted);margin-top:4px;text-align:right}
+
+/* ── DIVIDERS ── */
+.div-red{height:4px;background:var(--red)}
+.div-gold{height:1px;background:rgba(168,130,42,0.22)}
+
+/* ── WRAP / SEC ── */
+.w{max-width:1140px;margin:0 auto;padding:0 44px}
+.sec{padding:72px 0}
+.eye{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.eye::before{content:'';width:18px;height:1px;background:var(--red)}
+.sh{font-family:'Cinzel',serif;font-size:clamp(22px,3.2vw,38px);font-weight:700;line-height:1.2;color:var(--ink);margin-bottom:16px}
+.lead{font-size:15px;color:var(--muted);line-height:1.9;max-width:520px}
+
+/* ── STATS ── */
+.stats-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+.sc{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:22px 18px;position:relative;overflow:hidden;transition:box-shadow .2s}
+.sc:hover{box-shadow:0 4px 20px rgba(176,28,34,0.1)}
+.sc::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--red)}
+.sc.gold::after{background:var(--gold)}
+.sc-cross{position:absolute;top:10px;right:12px;opacity:0.055;color:var(--red)}
+.sc-lbl{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.sc-val{font-family:'Cinzel',serif;font-size:28px;font-weight:700;color:var(--ink);line-height:1}
+.sc-sub{font-size:12px;color:var(--muted);margin-top:6px}
+.sc-tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:100px;margin-top:8px;background:var(--redpale);color:var(--red);font-weight:500}
+.sc.gold .sc-tag{background:var(--goldpale);color:var(--gold)}
+
+/* ── PROJEKT ── */
+.proj-2col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.proj-p{font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:14px}
+.proj-img{border-radius:var(--r);background:linear-gradient(150deg,var(--red2) 0%,var(--ink2) 100%);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;border:1px solid rgba(176,28,34,0.2);position:relative;overflow:hidden}
+.proj-img::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.015) 0,rgba(255,255,255,0.015) 1px,transparent 1px,transparent 32px)}
+.proj-img-lbl{font-size:12px;color:rgba(255,255,255,0.28);letter-spacing:.06em;position:relative;z-index:1}
+.blockquote{border-left:3px solid var(--red);padding:14px 18px;margin-top:24px;background:#fff;border-radius:0 var(--r) var(--r) 0}
+.blockquote p{font-family:'Libre Baskerville',serif;font-size:16px;font-style:italic;color:var(--ink);line-height:1.65}
+.blockquote cite{font-size:11px;color:var(--muted);margin-top:6px;display:block;letter-spacing:.04em}
+
+/* ── TIMELINE ── */
+.tl-wrap{display:grid;grid-template-columns:repeat(5,1fr);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);margin-top:36px}
+.tl-col{background:#fff;padding:26px 18px;border-right:1px solid var(--border);position:relative}
+.tl-col:last-child{border-right:none}
+.tl-col.done{background:var(--redpale)}
+.tl-col.now{background:var(--goldpale)}
+.tl-yr{font-family:'Cinzel',serif;font-size:24px;font-weight:700;color:var(--stone3);margin-bottom:10px}
+.tl-col.done .tl-yr{color:var(--red)}.tl-col.now .tl-yr{color:var(--gold)}
+.tl-badge{font-size:10px;font-weight:500;padding:2px 8px;border-radius:100px;margin-bottom:8px;display:inline-block}
+.bd{background:var(--redmid);color:var(--red2)}.br{background:#F5EDCC;color:#8B6B10}.bp{background:var(--stone2);color:var(--muted)}
+.tl-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:5px;line-height:1.4}
+.tl-desc{font-size:12px;color:var(--muted);line-height:1.65}
+.tl-bar{position:absolute;bottom:0;left:0;right:0;height:3px}
+.tl-col.done .tl-bar{background:var(--red)}.tl-col.now .tl-bar{background:var(--gold)}
+
+/* ── CHART ── */
+.chart-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:30px;margin-top:36px}
+.chart-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px}
+.chart-ttl{font-family:'Cinzel',serif;font-size:15px;font-weight:600;color:var(--ink)}
+.chart-ttl-sub{font-size:12px;color:var(--muted);margin-top:3px}
+.chart-total-lbl{font-size:9px;letter-spacing:.12em;color:var(--muted);text-align:right;margin-bottom:4px;text-transform:uppercase}
+.chart-total-val{font-family:'Cinzel',serif;font-size:24px;font-weight:700;color:var(--red)}
+
+/* ── LEADERBOARD ── */
+.lb-wrap{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-top:20px}
+.lb-head{background:var(--red2);display:grid;grid-template-columns:48px 1fr 100px 120px 90px;padding:11px 18px;gap:8px}
+.lb-th{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.12em;color:rgba(255,255,255,0.5);text-transform:uppercase}
+.lb-th:nth-child(4){text-align:right}
+.lb-row{display:grid;grid-template-columns:48px 1fr 100px 120px 90px;padding:13px 18px;border-bottom:1px solid var(--border);gap:8px;align-items:center;transition:background .15s}
+.lb-row:last-child{border-bottom:none}
+.lb-row:hover{background:var(--redpale)}
+.rnk{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--stone3)}
+.r1{color:var(--gold)}.r2{color:#8C8C8C}.r3{color:#A06030}
+.dn{font-size:14px;font-weight:500;color:var(--ink)}
+.dl{font-size:11px;color:var(--muted)}
+.da{font-family:'Cinzel',serif;font-size:17px;font-weight:700;color:var(--red);text-align:right}
+.dbar-w{background:var(--stone2);border-radius:100px;height:4px;overflow:hidden;margin-top:4px}
+.dbar-f{height:100%;border-radius:100px;background:var(--red)}
+
+/* ── GALERIE ── */
+.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:240px 210px;gap:10px;margin-top:32px}
+.gi{border-radius:var(--r);overflow:hidden;position:relative;cursor:pointer}
+.gi:first-child{grid-row:span 2}
+.gi-inner{width:100%;height:100%;display:flex;align-items:center;justify-content:center;transition:transform .4s ease}
+.gi:hover .gi-inner{transform:scale(1.05)}
+.gi-cap{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(26,10,10,0.88) 0%,transparent 100%);padding:32px 14px 13px;pointer-events:none}
+.gi-cap-t{font-family:'Cinzel',serif;font-size:11px;font-weight:600;color:#fff;letter-spacing:.05em}
+.gi-cap-s{font-size:11px;color:rgba(255,255,255,0.48);margin-top:2px}
+.gi-a{background:linear-gradient(150deg,#200608 0%,#3E0E12 60%,#260A0D 100%)}
+.gi-b{background:linear-gradient(150deg,#0E0E1A 0%,#1C1A30 100%)}
+.gi-c{background:linear-gradient(150deg,#0D1710 0%,#182B1A 100%)}
+.gi-d{background:linear-gradient(150deg,#1C1208 0%,#2E1E08 100%)}
+.gi-e{background:linear-gradient(150deg,#140E22 0%,#221832 100%)}
+
+/* ── DOCS ── */
+.docs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin-top:28px}
+.dc{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:17px;display:flex;align-items:center;gap:13px;transition:border-color .2s,box-shadow .2s}
+.dc:hover{border-color:rgba(176,28,34,0.3);box-shadow:0 2px 12px rgba(176,28,34,0.07)}
+.dc-ico{width:42px;height:42px;border-radius:6px;background:var(--redpale);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:19px}
+.dc-name{font-size:13px;font-weight:500;color:var(--ink)}
+.dc-sub{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ── FOOTER ── */
+.footer{background:var(--ink);padding:44px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.ft-name{font-family:'Cinzel',serif;font-size:14px;font-weight:700;color:rgba(255,255,255,0.82);line-height:1.5}
+.ft-name span{color:var(--red3)}
+.ft-motto{font-family:'Libre Baskerville',serif;font-style:italic;font-size:13px;color:rgba(255,255,255,0.32);margin-top:6px}
+
+/* ── FADE ── */
+.fi{opacity:0;transform:translateY(12px);transition:opacity .55s ease,transform .55s ease}
+.fi.v{opacity:1;transform:none}
+
+/* ── LIGHTBOX ── */
+.lbox{position:fixed;inset:0;background:rgba(16,4,4,0.93);z-index:999;display:none;align-items:center;justify-content:center}
+.lbox.open{display:flex}
+.lbox-inner{max-width:640px;width:90%;background:var(--ink2);border-radius:var(--r);overflow:hidden;position:relative;border:1px solid rgba(176,28,34,0.3)}
+.lbox-close{position:absolute;top:10px;right:10px;background:var(--red2);color:#fff;border:none;width:28px;height:28px;border-radius:50%;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lbox-body{min-height:380px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:40px;text-align:center}
+.lbox-title{font-family:'Cinzel',serif;font-size:15px;color:#fff}
+.lbox-sub{font-size:12px;color:rgba(255,255,255,0.3)}
+
+@media(max-width:820px){
+  .hero-grid,.proj-2col{grid-template-columns:1fr}
+  .hero-r{display:none}
+  .hero-l{padding:56px 24px 80px}
+  .tl-wrap{grid-template-columns:1fr 1fr}
+  .tl-col{border-bottom:1px solid var(--border)}
+  .stats-4{grid-template-columns:1fr 1fr}
+  .gallery{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gi:first-child{grid-row:span 1;grid-column:span 2}
+  .lb-head,.lb-row{grid-template-columns:36px 1fr 90px}
+  .lb-th:nth-child(3),.lb-th:nth-child(5),.lb-th:nth-child(4){display:none}
+  .lb-row>div:nth-child(3),.lb-row>div:nth-child(5){display:none}
+  .w{padding:0 20px}
+  .footer,.lang-bar{padding-left:20px;padding-right:20px}
+  .prog-inner{grid-template-columns:1fr;gap:14px}
+}
+</style>
 </head>
-
 <body>
-    <div id="tm-bg"></div>
-    <div id="tm-wrap">
-        <div class="tm-main-content">
-            <div class="container tm-site-header-container">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-md-col-xl-6 mb-md-0 mb-sm-4 mb-4 tm-site-header-col">
-                        <div class="tm-site-header">
-                            <h1 class="mb-4">Rich Makers</h1>
-                            <img src="img/underline.png" class="img-fluid mb-4">
-                            <p>Events , Diskussionen , Finanztipps von den Experten. Gold, Krypto von A-Z</p>        
-                        </div>                        
-                    </div>
-                    <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                        <div class="content">
-                            <div class="grid">
-                                <div class="grid__item" id="home-link">
-                                    <div class="product">
-                                        <div class="tm-nav-link">
-                                            <i class="fas fa-home fa-3x tm-nav-icon"></i>
-                                            <span class="tm-nav-text">Welcome</span>
-                                            <div class="product__bg"></div>        
-                                        </div>                                    
-                                        <div class="product__description">
-                                            <div class="row mb-3">
-                                                <div class="col-12">
-                                                    <h2 class="tm-page-title">Wer wir sind</h2>        
-                                                </div>
-                                            </div>                                        
-                                            <div class="row">
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                    <img src="img/welcome-1.jpg" class="img-fluid mb-3">
-                                                    <p>Experten die sich auskennen. Immer auf dem neuesten Stand sind und euch den Weg weisen.</p>
-                                                      
-                                                </div>
-                                                <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                                                    <p>Jederzeit verfügbar - die besten von den besten melden sie sich.</p>
-                                                   
-                                                    <img src="img/welcome-2.jpg" class="img-fluid">
-                                                </div>                                        
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="grid__item" id="team-link">
-                                    <div class="product">
-                                        <div class="tm-nav-link">
-                                            <i class="fas fa-users fa-3x tm-nav-icon"></i>
-                                            <span class="tm-nav-text">Our Team</span>
-                                            <div class="product__bg"></div>            
-                                        </div>                                     
-                                        <div class="product__description">
-                                            <div class="p-sm-4 p-2">
-                                                <div class="row mb-3">
-                                                    <div class="col-12">
-                                                        <h2 class="tm-page-title">News aus der Finanzwelt / UNSER TEAM</h2>        
-                                                    </div>
-                                                </div>
-                                                <div class="row tm-reverse-sm">
-                                                    <div class="col-sm-12 col-md-8 col-lg-8 col-xl-8">
-                                                        <p class="mb-4">Vestibulum aliquet, arcu accumsan lobortis bibendum, justo velit efficitur lorem, at pulvinar mi justo nec lacus. Nullam et libero aliquet, luctus nunc sit amet, tincidunt ligula. Sed finibus ante sed tortor cursus, nec malesuada lectus interdum.</p>
-                                                        <p class="mb-4">Sed ex turpis, vulputate in efficitur id, lobortis eget nibh. Pellentesque maximus ipsum eget velit imperdiet sodales. Suspendisse in blandit mi.</p>
-                                                        <p class="mb-5">Pellentesque finibus felis risus, ut malesuada felis viverra at. Quisque accumsan in mi non hendrerit.</p>
-                                                        <a href="#" class="btn tm-btn-gray">Read More</a>        
-                                                    </div>                                                
-                                                    <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-lg-0 mb-sm-4 mb-4">
-                                                        <img src="img/team.jpg" class="img-fluid">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+<!-- LANG -->
+<div class="lang-bar">
+  <button class="lb on" id="btn-de" onclick="setLang('de')">🇩🇪 Deutsch</button>
+  <span class="lsep">|</span>
+  <button class="lb" id="btn-sr-lat" onclick="setLang('sr-lat')">🇷🇸 Srpski</button>
+  <span class="lsep">|</span>
+  <button class="lb" id="btn-sr-cyr" onclick="setLang('sr-cyr')">🇷🇸 Српски</button>
+</div>
 
-                                <div class="grid__item">
-                                    <div class="product">
-                                        <div class="tm-nav-link">
-                                            <i class="fas fa-handshake fa-3x tm-nav-icon"></i>
-                                            <span class="tm-nav-text">Anstehendes Event</span>
-                                            <div class="product__bg"></div>             
-                                        </div>                                                                 
-                                        <div class="product__description">
-                                            <div class="p-sm-4 p-2">
-                                                <div class="row mb-3">
-                                                    <div class="col-12">
-                                                        <h2 class="tm-page-title">Anstehendes Event</h2>        
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <div class="col-12">
-                                                        <p>Aliquam interdum, nisl sed faucibus tempor, massa velit laoreet ipsum, et faucibus sapien magna at enim. Suspendisse a dictum tortor, vel rhoncus libero. Integer at lacus velit. Nullam dapibus venenatis placerat.</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="p-sm-4 p-2 tm-img-container">
-                                                            <div class="tm-img-slider" id="tmImgSlider">
-                                                              <a href="#" class="tm-slider-img-link"><img src="img/gallery-img-01-tn.jpg" alt="Image 1" class="img-fluid tm-slider-img"></a>
-                                                              <a href="#" class="tm-slider-img-link"><img src="img/gallery-img-02-tn.jpg" alt="Image 2" class="img-fluid tm-slider-img"></a>
-                                                              <a href="#" class="tm-slider-img-link"><img src="img/gallery-img-03-tn.jpg" alt="Image 3" class="img-fluid tm-slider-img"></a>
-                                                              <a href="#" class="tm-slider-img-link"><img src="img/gallery-img-04-tn.jpg" alt="Image 4" class="img-fluid tm-slider-img"></a>
-                                                              <a href="#" class="tm-slider-img-link"><img src="img/gallery-img-05-tn.jpg" alt="Image 5" class="img-fluid tm-slider-img"></a>
-                                                              <a href="#" class="tm-slider-img-link"><img src="img/gallery-img-06-tn.jpg" alt="Image 6" class="img-fluid tm-slider-img"></a>
-                                                            </div>
-                                                        </div>  
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>       
-                                    </div>
-                                </div>
-
-                                <div class="grid__item">
-                                    <div class="product">
-                                        <div class="tm-nav-link">
-                                            <i class="fas fa-comments fa-3x tm-nav-icon"></i>
-                                            <span class="tm-nav-text">Book</span>
-                                            <div class="product__bg"></div>             
-                                        </div>                                                              
-                                        <div class="product__description">
-                                            <div class="pt-sm-4 pb-sm-4 pl-sm-5 pr-sm-5 pt-2 pb-2 pl-3 pr-3">
-                                                <div class="row mb-3">
-                                                    <div class="col-12">
-                                                        <h2 class="tm-page-title">Book Now</h2>        
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-4">
-                                                    <div class="col-12">
-                                                        <p>Lorem ipsum dolor site amet, consectetur adipiscing elit. Aliquam interdum, nisl sed faucibus tempor, massa velit laoreet ipsum, et faucibus sapien magna at enim. Suspendisse a dictum tortor, vel rhoncus libero.</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <form action="index.html" method="post" class="contact-form">
-                                                            <div class="row">
-                                                                <div class="form-group col-md-6 col-lg-6 col-xl-6">
-                                                                  <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Name"  required/>
-                                                                </div>
-                                                                <div class="form-group col-md-6 col-lg-6 col-xl-6 tm-col-email">
-                                                                  <input type="email" id="contact_email" name="contact_email" class="form-control" placeholder="Email"  required/>
-                                                                </div>
-                                                            </div>                                                        
-                                                            <div class="form-group">
-                                                              <textarea id="contact_message" name="contact_message" class="form-control" rows="9" placeholder="Welches Event Möchten sie Buchen" required></textarea>
-                                                            </div>
-                                                            <button type="submit" class="btn btn-primary tm-btn-submit">Submit</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                        </div>                       
-                    </div>
-                </div>                
-            </div>
-            <footer>
-                
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-l">
+      <div class="hero-overline"><span data-de="Bauprojekt 2024 – 2027" data-sr-lat="Projekat izgradnje 2024 – 2027" data-sr-cyr="Пројекат изградње 2024 – 2027">Bauprojekt 2024 – 2027</span></div>
+      <h1 class="hero-h1">
+        Srpska Pravoslavna Crkva
+        <span class="sub-line">&amp; Duhovno Kulturni Centar</span>
+      </h1>
+      <p class="hero-desc" data-de="Wir errichten ein Haus des Glaubens, der serbischen Kultur und der Gemeinschaft – für uns und für die Generationen, die nach uns kommen." data-sr-lat="Podižemo hram vere, srpske kulture i zajednice – za nas i za generacije koje dolaze." data-sr-cyr="Подижемо храм вере, српске културе и заједнице – за нас и за генерације које долазе.">Wir errichten ein Haus des Glaubens, der serbischen Kultur und der Gemeinschaft – für uns und für die Generationen, die nach uns kommen.</p>
+      <div class="hero-actions">
+        <button class="btn-w" onclick="document.getElementById('spenden').scrollIntoView({behavior:'smooth'})"><span data-de="Zum Spendenbereich" data-sr-lat="Donacije" data-sr-cyr="Донације">Zum Spendenbereich</span></button>
+        <button class="btn-g" onclick="document.getElementById('projekt').scrollIntoView({behavior:'smooth'})"><span data-de="Das Projekt" data-sr-lat="Projekat" data-sr-cyr="Пројекат">Das Projekt</span></button>
+      </div>
     </div>
-    <!-- load JS -->
-    <script src="js/jquery-3.2.1.slim.min.js"></script>         <!-- https://jquery.com/ -->    
-    <script src="slick/slick.min.js"></script>                  <!-- http://kenwheeler.github.io/slick/ -->  
-    <script src="js/anime.min.js"></script>                     <!-- http://animejs.com/ -->
-    <script src="js/main.js"></script>  
-    <script>      
 
-        function setupFooter() {
-            var pageHeight = $('.tm-site-header-container').height() + $('footer').height() + 100;
+    <div class="hero-r">
+      <!-- Large animated Orthodox cross (3-bar with circle) -->
+      <div class="hero-cross-wrap" style="opacity:0.18">
+        <svg width="300" height="400" viewBox="0 0 300 400" fill="none">
+          <!-- vertical beam -->
+          <rect x="136" y="18" width="28" height="364" fill="white"/>
+          <!-- top small bar (inscription tablet) -->
+          <rect x="90" y="48" width="120" height="16" fill="white"/>
+          <!-- main horizontal bar -->
+          <rect x="44" y="110" width="212" height="22" fill="white"/>
+          <!-- slanted footrest (suppedaneum) — left high, right low -->
+          <polygon points="60,210  240,210  240,228  60,223" fill="white"/>
+          <!-- halo/circle -->
+          <circle cx="150" cy="148" r="52" fill="none" stroke="white" stroke-width="4"/>
+          <!-- decorative small dots at cross tips -->
+          <circle cx="150" cy="22" r="5" fill="white"/>
+          <circle cx="44" cy="121" r="5" fill="white"/>
+          <circle cx="256" cy="121" r="5" fill="white"/>
+          <!-- mini corner crosses top-left -->
+          <rect x="24" y="28" width="7" height="52" fill="white" opacity="0.5"/>
+          <rect x="12" y="38" width="30" height="6" fill="white" opacity="0.5"/>
+          <rect x="13" y="47" width="11" height="3" fill="white" opacity="0.5"/>
+          <polygon points="13,60 24,60 24,63 13,62" fill="white" opacity="0.5"/>
+          <!-- mini corner crosses top-right -->
+          <rect x="269" y="28" width="7" height="52" fill="white" opacity="0.5"/>
+          <rect x="258" y="38" width="30" height="6" fill="white" opacity="0.5"/>
+          <rect x="258" y="47" width="11" height="3" fill="white" opacity="0.5"/>
+          <polygon points="258,60 269,60 269,63 258,62" fill="white" opacity="0.5"/>
+          <!-- bottom decorative line -->
+          <line x1="90" y1="392" x2="210" y2="392" stroke="white" stroke-width="1.5" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="hero-stats">
+        <div class="hs"><div class="hs-val">€ 86k</div><div class="hs-lbl" data-de="GESAMMELT" data-sr-lat="PRIKUPLJENO" data-sr-cyr="ПРИКУПЉЕНО">GESAMMELT</div></div>
+        <div class="hs"><div class="hs-val">43%</div><div class="hs-lbl" data-de="VOM ZIEL" data-sr-lat="CILJA" data-sr-cyr="ЦИЉА">VOM ZIEL</div></div>
+        <div class="hs"><div class="hs-val">142</div><div class="hs-lbl" data-de="SPENDER" data-sr-lat="DONATORA" data-sr-cyr="ДОНАТОРА">SPENDER</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            var main = $('.tm-main-content');
+<!-- PROGRESS -->
+<div class="prog-band">
+  <div class="prog-inner">
+    <div><div class="pi-num">€ 86.400</div><div class="pi-lbl" data-de="gesammelt" data-sr-lat="prikupljeno" data-sr-cyr="прикупљено">gesammelt</div></div>
+    <div>
+      <div class="pi-track"><div class="pi-fill" id="pf"></div></div>
+      <div class="pi-meta"><span>43%</span><b data-de="Spendenziel bis 2026" data-sr-lat="Cilj do 2026." data-sr-cyr="Циљ до 2026.">Spendenziel bis 2026</b></div>
+    </div>
+    <div><div class="pi-goal-num">€ 200.000</div><div class="pi-goal-lbl" data-de="Gesamtziel" data-sr-lat="Ukupni cilj" data-sr-cyr="Укупни циљ">Gesamtziel</div></div>
+  </div>
+</div>
+<div class="div-red"></div>
 
-            if($(window).height() < pageHeight) {
-                main.addClass('tm-footer-relative');
-            }
-            else {
-                main.removeClass('tm-footer-relative');   
-            }
-        }
+<!-- STATS -->
+<div class="w"><div class="sec" style="padding-bottom:0">
+  <div class="eye" data-de="Übersicht" data-sr-lat="Pregled" data-sr-cyr="Преглед">Übersicht</div>
+  <h2 class="sh fi" data-de="Aktuelle Zahlen" data-sr-lat="Aktuelni podaci" data-sr-cyr="Актуелни подаци">Aktuelle Zahlen</h2>
+  <div class="stats-4 fi">
+    <!-- Reusable orthodox cross watermark SVG -->
+    <div class="sc">
+      <svg class="sc-cross" width="30" height="40" viewBox="0 0 30 40"><rect x="12" y="0" width="6" height="40" fill="currentColor"/><rect x="0" y="6" width="30" height="6" fill="currentColor"/><rect x="1" y="14" width="10" height="3" fill="currentColor"/><polygon points="1,23 13,23 13,26 1,25" fill="currentColor"/></svg>
+      <div class="sc-lbl" data-de="Dieses Jahr" data-sr-lat="Ove godine" data-sr-cyr="Ове године">Dieses Jahr</div>
+      <div class="sc-val">€ 61.200</div>
+      <div class="sc-sub" data-de="Jan – Dez 2025" data-sr-lat="Jan – Dec 2025" data-sr-cyr="Јан – Дец 2025">Jan – Dez 2025</div>
+      <span class="sc-tag">↑ +28%</span>
+    </div>
+    <div class="sc">
+      <svg class="sc-cross" width="30" height="40" viewBox="0 0 30 40"><rect x="12" y="0" width="6" height="40" fill="currentColor"/><rect x="0" y="6" width="30" height="6" fill="currentColor"/><rect x="1" y="14" width="10" height="3" fill="currentColor"/><polygon points="1,23 13,23 13,26 1,25" fill="currentColor"/></svg>
+      <div class="sc-lbl" data-de="Diesen Monat" data-sr-lat="Ovaj mesec" data-sr-cyr="Овај месец">Diesen Monat</div>
+      <div class="sc-val">€ 8.750</div>
+      <div class="sc-sub" data-de="November 2025" data-sr-lat="Novembar 2025" data-sr-cyr="Новембар 2025">November 2025</div>
+      <span class="sc-tag">↑ +14%</span>
+    </div>
+    <div class="sc gold">
+      <svg class="sc-cross" width="30" height="40" viewBox="0 0 30 40"><rect x="12" y="0" width="6" height="40" fill="currentColor"/><rect x="0" y="6" width="30" height="6" fill="currentColor"/><rect x="1" y="14" width="10" height="3" fill="currentColor"/><polygon points="1,23 13,23 13,26 1,25" fill="currentColor"/></svg>
+      <div class="sc-lbl" data-de="Gesamt gesammelt" data-sr-lat="Ukupno prikupljeno" data-sr-cyr="Укупно прикупљено">Gesamt gesammelt</div>
+      <div class="sc-val">€ 86.400</div>
+      <div class="sc-sub" data-de="Seit Projektstart" data-sr-lat="Od početka projekta" data-sr-cyr="Од почетка пројекта">Seit Projektstart</div>
+      <span class="sc-tag gold">43% <span data-de="erreicht" data-sr-lat="postignuto" data-sr-cyr="постигнуто">erreicht</span></span>
+    </div>
+    <div class="sc">
+      <svg class="sc-cross" width="30" height="40" viewBox="0 0 30 40"><rect x="12" y="0" width="6" height="40" fill="currentColor"/><rect x="0" y="6" width="30" height="6" fill="currentColor"/><rect x="1" y="14" width="10" height="3" fill="currentColor"/><polygon points="1,23 13,23 13,26 1,25" fill="currentColor"/></svg>
+      <div class="sc-lbl" data-de="Spender" data-sr-lat="Donatori" data-sr-cyr="Донатори">Spender</div>
+      <div class="sc-val">142</div>
+      <div class="sc-sub" data-de="Privatpersonen" data-sr-lat="Fizička lica" data-sr-cyr="Физичка лица">Privatpersonen</div>
+      <span class="sc-tag">+6 <span data-de="diesen Monat" data-sr-lat="ovaj mesec" data-sr-cyr="овај месец">diesen Monat</span></span>
+    </div>
+  </div>
+</div></div>
 
-        /* DOM is ready
-        ------------------------------------------------*/
-        $(function(){
+<div class="div-gold" style="margin-top:60px"></div>
 
-            setupFooter();
+<!-- PROJEKT -->
+<div class="w"><div class="sec" id="projekt">
+  <div class="proj-2col fi">
+    <div>
+      <div class="eye" data-de="Das Projekt" data-sr-lat="Projekat" data-sr-cyr="Пројекат">Das Projekt</div>
+      <h2 class="sh" data-de="Ein Haus für Glauben & Gemeinschaft" data-sr-lat="Dom za veru i zajednicu" data-sr-cyr="Дом за веру и заједницу">Ein Haus für Glauben &amp; Gemeinschaft</h2>
+      <p class="proj-p" data-de="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Die Srpska Pravoslavna Crkva und der Duhovno Kulturni Centar entstehen als geistliches und kulturelles Herzstück der serbischen Gemeinschaft. Das Gebäude umfasst eine byzantinisch geprägte Kirche, Gemeinderäume und Veranstaltungssäle." data-sr-lat="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Srpska pravoslavna crkva i duhovno kulturni centar nastaju kao duhovno i kulturno središte zajednice. Zgrada obuhvata crkvu u vizantijskom stilu, opštinske prostorije i sale." data-sr-cyr="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Српска православна црква и духовно културни центар настају као духовно и културно средиште заједнице.">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Das Gebäude umfasst eine byzantinische Kirche, Gemeinderäume und Säle.</p>
+      <p class="proj-p" data-de="Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Das Projekt wird ausschließlich durch Spenden der Gemeinschaft getragen. Jede Spende bringt uns dem Ziel näher – dem Bau eines Ortes, der für Generationen bestehen wird." data-sr-lat="Praesent commodo cursus magna. Projekat se finansira isključivo donacijama zajednice. Svaka donacija nas približava cilju." data-sr-cyr="Praesent commodo cursus magna. Пројекат се финансира искључиво донацијама заједнице.">Praesent commodo cursus magna. Das Projekt wird durch Spenden getragen.</p>
+      <div class="blockquote">
+        <p data-de="»Bog čuva Srbiju i srpski narod.«" data-sr-lat="»Bog čuva Srbiju i srpski narod.«" data-sr-cyr="»Бог чува Србију и српски народ.«">»Bog čuva Srbiju i srpski narod.«</p>
+        <cite data-de="Serbischer Wahlspruch" data-sr-lat="Srpska izreka" data-sr-cyr="Српска изрека">Serbischer Wahlspruch</cite>
+      </div>
+    </div>
+    <div class="proj-img">
+      <!-- Orthodox cross in project placeholder -->
+      <svg width="110" height="148" viewBox="0 0 110 148" fill="none" style="opacity:0.42;position:relative;z-index:1">
+        <rect x="48" y="6" width="14" height="136" fill="white"/>
+        <rect x="14" y="20" width="82" height="11" fill="white"/>
+        <rect x="8" y="52" width="94" height="14" fill="white"/>
+        <polygon points="8,96 102,96 102,108 8,106" fill="white"/>
+        <circle cx="55" cy="68" r="24" fill="none" stroke="white" stroke-width="2"/>
+      </svg>
+      <span class="proj-img-lbl" data-de="Architekturbild folgt" data-sr-lat="Vizualizacija uskoro" data-sr-cyr="Визуализација ускоро">Architekturbild folgt</span>
+    </div>
+  </div>
 
-            $(window).resize(function(){
-                setupFooter();
-            });
+  <!-- TIMELINE -->
+  <div style="margin-top:60px">
+    <div class="eye" data-de="Zeitplan" data-sr-lat="Vremenski plan" data-sr-cyr="Временски план">Zeitplan</div>
+    <h2 class="sh" data-de="Meilensteine" data-sr-lat="Prekretnice" data-sr-cyr="Прекретнице">Meilensteine</h2>
+    <div class="tl-wrap fi">
+      <div class="tl-col done"><div class="tl-bar"></div><div class="tl-yr">2023</div><span class="tl-badge bd" data-de="✓ Fertig" data-sr-lat="✓ Završeno" data-sr-cyr="✓ Завршено">✓ Fertig</span><div class="tl-title" data-de="Lorem ipsum Gründung" data-sr-lat="Lorem ipsum osnivanje" data-sr-cyr="Lorem ipsum оснивање">Lorem ipsum Gründung</div><div class="tl-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt.</div></div>
+      <div class="tl-col done"><div class="tl-bar"></div><div class="tl-yr">2024</div><span class="tl-badge bd" data-de="✓ Fertig" data-sr-lat="✓ Završeno" data-sr-cyr="✓ Завршено">✓ Fertig</span><div class="tl-title" data-de="Lorem ipsum Planung" data-sr-lat="Lorem ipsum planiranje" data-sr-cyr="Lorem ipsum планирање">Lorem ipsum Planung</div><div class="tl-desc">Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip.</div></div>
+      <div class="tl-col now"><div class="tl-bar"></div><div class="tl-yr">2025</div><span class="tl-badge br" data-de="▶ Aktuell" data-sr-lat="▶ U toku" data-sr-cyr="▶ У току">▶ Aktuell</span><div class="tl-title" data-de="Lorem ipsum Spenden" data-sr-lat="Lorem ipsum donacije" data-sr-cyr="Lorem ipsum донације">Lorem ipsum Spenden</div><div class="tl-desc">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu.</div></div>
+      <div class="tl-col"><div class="tl-bar"></div><div class="tl-yr">2026</div><span class="tl-badge bp" data-de="○ Geplant" data-sr-lat="○ Planirano" data-sr-cyr="○ Планирано">○ Geplant</span><div class="tl-title" data-de="Lorem ipsum Baubeginn" data-sr-lat="Lorem ipsum gradnja" data-sr-cyr="Lorem ipsum градња">Lorem ipsum Baubeginn</div><div class="tl-desc">Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt.</div></div>
+      <div class="tl-col"><div class="tl-bar"></div><div class="tl-yr">2027</div><span class="tl-badge bp" data-de="○ Geplant" data-sr-lat="○ Planirano" data-sr-cyr="○ Планирано">○ Geplant</span><div class="tl-title" data-de="Lorem ipsum Einweihung" data-sr-lat="Lorem ipsum posvećenje" data-sr-cyr="Lorem ipsum посвећење">Lorem ipsum Einweihung</div><div class="tl-desc">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium totam.</div></div>
+    </div>
+  </div>
+</div></div>
 
-            $('.tm-current-year').text(new Date().getFullYear());  // Update year in copyright           
-        });
+<div class="div-red"></div>
 
-    </script>             
+<!-- SPENDEN -->
+<div class="w" id="spenden"><div class="sec">
+  <div class="eye" data-de="Transparenz" data-sr-lat="Transparentnost" data-sr-cyr="Транспарентност">Transparenz</div>
+  <h2 class="sh" data-de="Spendenentwicklung & Spender" data-sr-lat="Donacije i donatori" data-sr-cyr="Донације и донатори">Spendenentwicklung &amp; Spender</h2>
+  <div class="chart-card fi">
+    <div class="chart-hd">
+      <div><div class="chart-ttl" data-de="Monatliche Spenden 2025" data-sr-lat="Mesečne donacije 2025" data-sr-cyr="Месечне донације 2025">Monatliche Spenden 2025</div><div class="chart-ttl-sub" data-de="Alle Privatspenden in Euro (€)" data-sr-lat="Sve privatne donacije u eurima (€)" data-sr-cyr="Све приватне донације у еврима (€)">Alle Privatspenden in Euro (€)</div></div>
+      <div><div class="chart-total-lbl" data-de="JAHRESGESAMT" data-sr-lat="GODIŠNJE UKUPNO" data-sr-cyr="ГОДИШЊЕ УКУПНО">JAHRESGESAMT</div><div class="chart-total-val">€ 61.200</div></div>
+    </div>
+    <div style="position:relative;width:100%;height:240px"><canvas id="chart" role="img" aria-label="Monatliche Spenden 2025">Spendenübersicht 2025</canvas></div>
+  </div>
 
+  <h3 style="font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:var(--ink);margin-top:44px;margin-bottom:6px" data-de="Unsere Spender" data-sr-lat="Naši donatori" data-sr-cyr="Наши донатори">Unsere Spender</h3>
+  <p style="font-size:14px;color:var(--muted)" data-de="Herzlichen Dank an alle Unterstützerinnen und Unterstützer." data-sr-lat="Srdačna zahvalnost svim podržavaocima." data-sr-cyr="Срдачна захвалност свим подржаваоцима.">Herzlichen Dank an alle Unterstützerinnen und Unterstützer.</p>
+
+  <div class="lb-wrap fi">
+    <div class="lb-head">
+      <div class="lb-th">#</div>
+      <div class="lb-th" data-de="Spender" data-sr-lat="Donator" data-sr-cyr="Донатор">Spender</div>
+      <div class="lb-th" data-de="Ort" data-sr-lat="Mesto" data-sr-cyr="Место">Ort</div>
+      <div class="lb-th" style="text-align:right" data-de="Betrag" data-sr-lat="Iznos" data-sr-cyr="Износ">Betrag</div>
+      <div class="lb-th" data-de="Anteil" data-sr-lat="Udeo" data-sr-cyr="Удео">Anteil</div>
+    </div>
+    <div class="lb-row"><div><span class="rnk r1">1</span></div><div><div class="dn">Srpska Pravoslavna Crkva Wien</div></div><div><div class="dl">Wien</div></div><div><div class="da">€ 18.000</div></div><div><div class="dbar-w"><div class="dbar-f" style="width:100%"></div></div></div></div>
+    <div class="lb-row"><div><span class="rnk r2">2</span></div><div><div class="dn">Porodica Petrović</div></div><div><div class="dl">Graz</div></div><div><div class="da">€ 12.500</div></div><div><div class="dbar-w"><div class="dbar-f" style="width:69%"></div></div></div></div>
+    <div class="lb-row"><div><span class="rnk r3">3</span></div><div><div class="dn">Porodica Nikolić</div></div><div><div class="dl">Linz</div></div><div><div class="da">€ 9.200</div></div><div><div class="dbar-w"><div class="dbar-f" style="width:51%"></div></div></div></div>
+    <div class="lb-row"><div><span class="rnk">4</span></div><div><div class="dn" data-de="Anonymer Spender" data-sr-lat="Anonimni donator" data-sr-cyr="Анонимни донатор">Anonymer Spender</div></div><div><div class="dl">–</div></div><div><div class="da">€ 7.500</div></div><div><div class="dbar-w"><div class="dbar-f" style="width:42%"></div></div></div></div>
+    <div class="lb-row"><div><span class="rnk">5</span></div><div><div class="dn">Udruženje „Sveta Petka"</div></div><div><div class="dl">Wien</div></div><div><div class="da">€ 4.200</div></div><div><div class="dbar-w"><div class="dbar-f" style="width:23%"></div></div></div></div>
+  </div>
+  <div style="font-size:12px;color:var(--muted);margin-top:10px">+ 137 <span data-de="weitere Spender" data-sr-lat="dodatnih donatora" data-sr-cyr="додатних донатора">weitere Spender</span></div>
+</div></div>
+
+<div class="div-gold"></div>
+
+<!-- GALERIE -->
+<div class="w" id="galerie"><div class="sec">
+  <div class="eye" data-de="Galerie" data-sr-lat="Galerija" data-sr-cyr="Галерија">Galerie</div>
+  <h2 class="sh" data-de="Das Projekt in Bildern" data-sr-lat="Projekat u slikama" data-sr-cyr="Пројекат у сликама">Das Projekt in Bildern</h2>
+  <div class="gallery fi">
+    <div class="gi" onclick="openLb('main')" style="grid-row:span 2">
+      <div class="gi-inner gi-a" style="min-height:460px">
+        <svg width="130" height="172" viewBox="0 0 130 172" fill="none" style="opacity:0.32">
+          <rect x="56" y="7" width="17" height="158" fill="white"/>
+          <rect x="18" y="23" width="94" height="13" fill="white"/>
+          <rect x="8" y="63" width="114" height="16" fill="white"/>
+          <polygon points="8,112 122,112 122,126 8,124" fill="white"/>
+          <circle cx="64" cy="76" r="30" fill="none" stroke="white" stroke-width="2.5"/>
+          <circle cx="64" cy="76" r="38" fill="none" stroke="white" stroke-width="1" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="gi-cap"><div class="gi-cap-t" data-de="Kirchenplan – Hauptansicht" data-sr-lat="Plan crkve – glavni pogled" data-sr-cyr="План цркве – главни поглед">Kirchenplan – Hauptansicht</div><div class="gi-cap-s" data-de="Architektenentwurf 2024" data-sr-lat="Arhitektonski nacrt 2024" data-sr-cyr="Архитектонски нацрт 2024">Architektenentwurf 2024</div></div>
+    </div>
+    <div class="gi" onclick="openLb('b')">
+      <div class="gi-inner gi-b" style="min-height:230px">
+        <svg width="54" height="72" viewBox="0 0 54 72" fill="none" style="opacity:0.32"><rect x="23" y="3" width="8" height="66" fill="white"/><rect x="6" y="10" width="42" height="7" fill="white"/><rect x="3" y="27" width="48" height="8" fill="white"/><polygon points="3,49 51,49 51,58 3,57" fill="white"/><circle cx="27" cy="38" r="16" fill="none" stroke="white" stroke-width="1.5"/></svg>
+      </div>
+      <div class="gi-cap"><div class="gi-cap-t" data-de="Grundstück & Lageplan" data-sr-lat="Parcela i plan" data-sr-cyr="Парцела и план">Grundstück &amp; Lageplan</div><div class="gi-cap-s">2024</div></div>
+    </div>
+    <div class="gi" onclick="openLb('c')">
+      <div class="gi-inner gi-c" style="min-height:230px">
+        <svg width="52" height="70" viewBox="0 0 52 70" fill="none" style="opacity:0.28"><rect x="22" y="2" width="8" height="66" fill="white"/><rect x="5" y="10" width="42" height="7" fill="white"/><rect x="2" y="26" width="48" height="8" fill="white"/><polygon points="2,48 50,48 50,57 2,55" fill="white"/></svg>
+      </div>
+      <div class="gi-cap"><div class="gi-cap-t" data-de="Gemeinschaftstreffen" data-sr-lat="Skup zajednice" data-sr-cyr="Скуп заједнице">Gemeinschaftstreffen</div><div class="gi-cap-s" data-de="Februar 2025" data-sr-lat="Februar 2025" data-sr-cyr="Фебруар 2025">Februar 2025</div></div>
+    </div>
+    <div class="gi" onclick="openLb('d')">
+      <div class="gi-inner gi-d" style="min-height:210px">
+        <svg width="50" height="66" viewBox="0 0 50 66" fill="none" style="opacity:0.28"><rect x="21" y="2" width="8" height="62" fill="white"/><rect x="5" y="9" width="40" height="7" fill="white"/><rect x="2" y="24" width="46" height="8" fill="white"/><polygon points="2,44 48,44 48,53 2,51" fill="white"/><circle cx="25" cy="33" r="13" fill="none" stroke="white" stroke-width="1.5"/></svg>
+      </div>
+      <div class="gi-cap"><div class="gi-cap-t" data-de="Spatenstich-Feier" data-sr-lat="Kamen temeljac" data-sr-cyr="Камен темељац">Spatenstich-Feier</div><div class="gi-cap-s" data-de="Geplant 2026" data-sr-lat="Planirano 2026" data-sr-cyr="Планирано 2026">Geplant 2026</div></div>
+    </div>
+    <div class="gi" onclick="openLb('e')">
+      <div class="gi-inner gi-e" style="min-height:210px">
+        <svg width="50" height="66" viewBox="0 0 50 66" fill="none" style="opacity:0.28"><rect x="21" y="2" width="8" height="62" fill="white"/><rect x="5" y="9" width="40" height="7" fill="white"/><rect x="2" y="24" width="46" height="8" fill="white"/><polygon points="2,44 48,44 48,53 2,51" fill="white"/></svg>
+      </div>
+      <div class="gi-cap"><div class="gi-cap-t" data-de="Einweihung" data-sr-lat="Posvećenje" data-sr-cyr="Посвећење">Einweihung</div><div class="gi-cap-s" data-de="Geplant 2027" data-sr-lat="Planirano 2027" data-sr-cyr="Планирано 2027">Geplant 2027</div></div>
+    </div>
+  </div>
+</div></div>
+
+<div class="div-red"></div>
+
+<!-- DOCS -->
+<div class="w" id="dokumente"><div class="sec">
+  <div class="eye" data-de="Dokumente" data-sr-lat="Dokumenti" data-sr-cyr="Документи">Dokumente</div>
+  <h2 class="sh" data-de="Unterlagen & PDFs" data-sr-lat="Dokumenta i PDF-ovi" data-sr-cyr="Документа и PDF-ови">Unterlagen &amp; PDFs</h2>
+  <div class="docs-grid fi">
+    <div class="dc"><div class="dc-ico">📄</div><div><div class="dc-name" data-de="Vereinssatzung 2023.pdf" data-sr-lat="Statut udruženja 2023.pdf" data-sr-cyr="Статут удружења 2023.pdf">Vereinssatzung 2023.pdf</div><div class="dc-sub">240 KB · 2023</div></div></div>
+    <div class="dc"><div class="dc-ico">📐</div><div><div class="dc-name" data-de="Architekturplan v2.pdf" data-sr-lat="Arhitektonski plan v2.pdf" data-sr-cyr="Архитектонски план v2.pdf">Architekturplan v2.pdf</div><div class="dc-sub">4.2 MB · 2024</div></div></div>
+    <div class="dc"><div class="dc-ico">📋</div><div><div class="dc-name" data-de="Baugenehmigung (Demo).pdf" data-sr-lat="Građevinska dozvola (Demo).pdf" data-sr-cyr="Грађевинска дозвола (Demo).pdf">Baugenehmigung (Demo).pdf</div><div class="dc-sub">1.1 MB · 2025</div></div></div>
+  </div>
+</div></div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>
+    <div class="ft-name">Srpska Pravoslavna Crkva<br><span>&amp; Duhovno Kulturni Centar</span></div>
+    <div class="ft-motto" data-de="Bog i Srpstvo · Бог и Српство" data-sr-lat="Bog i Srpstvo · Бог и Српство" data-sr-cyr="Бог и Српство · Bog i Srpstvo">Bog i Srpstvo · Бог и Српство</div>
+  </div>
+  <svg width="28" height="38" viewBox="0 0 28 38" fill="none" style="opacity:0.2">
+    <rect x="11" y="0" width="6" height="38" fill="white"/>
+    <rect x="0" y="5" width="28" height="6" fill="white"/>
+    <rect x="1" y="13" width="9" height="3" fill="white"/>
+    <polygon points="1,21 12,21 12,24 1,23" fill="white"/>
+  </svg>
+  <div style="text-align:right;font-size:12px;color:rgba(255,255,255,0.3)" data-de="Bauprojekt 2024 – 2027" data-sr-lat="Projekat 2024 – 2027" data-sr-cyr="Пројекат 2024 – 2027">Bauprojekt 2024 – 2027</div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lbox" id="lb" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="lbox-inner">
+    <button class="lbox-close" onclick="document.getElementById('lb').classList.remove('open')">✕</button>
+    <div class="lbox-body">
+      <svg width="52" height="70" viewBox="0 0 52 70" fill="none" style="opacity:0.12"><rect x="22" y="2" width="8" height="66" fill="white"/><rect x="5" y="10" width="42" height="7" fill="white"/><rect x="2" y="26" width="48" height="8" fill="white"/><polygon points="2,48 50,48 50,57 2,55" fill="white"/><circle cx="26" cy="36" r="16" fill="none" stroke="white" stroke-width="1.5"/></svg>
+      <div class="lbox-title" id="lb-title"></div>
+      <div class="lbox-sub" data-de="Bild wird hier angezeigt" data-sr-lat="Slika će biti prikazana ovde" data-sr-cyr="Слика ће бити приказана овде">Bild wird hier angezeigt</div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+var lang='de';
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('[data-de]').forEach(function(e){
+    var v=e.getAttribute('data-'+l)||e.getAttribute('data-de');
+    if(v)e.textContent=v;
+  });
+  ['de','sr-lat','sr-cyr'].forEach(function(k){document.getElementById('btn-'+k).classList.toggle('on',k===l);});
+  document.documentElement.lang=l==='de'?'de':'sr';
+}
+window.addEventListener('load',function(){
+  setTimeout(function(){document.getElementById('pf').style.width='43%';},300);
+  new Chart(document.getElementById('chart').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],
+      datasets:[{
+        data:[3200,4100,3800,5500,4200,6800,5100,6200,7400,5900,7200,2500],
+        backgroundColor:function(c){return c.dataIndex===10?'#D42B32':'rgba(176,28,34,0.55)';},
+        hoverBackgroundColor:'#D42B32',borderRadius:5,borderSkipped:false
+      }]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return' € '+c.raw.toLocaleString('de-AT');}},backgroundColor:'rgba(26,10,10,0.95)',titleColor:'#fff',bodyColor:'#aaa',borderColor:'rgba(176,28,34,0.4)',borderWidth:1}},
+      scales:{x:{grid:{display:false},ticks:{color:'#7A6060',font:{size:11}}},y:{grid:{color:'rgba(176,28,34,0.06)'},border:{display:false},ticks:{color:'#7A6060',font:{size:11},callback:function(v){return'€'+Math.round(v/1000)+'k';}}}}
+    }
+  });
+});
+var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('v');});},{threshold:0.08});
+document.querySelectorAll('.fi').forEach(function(e){obs.observe(e);});
+var lbls={main:{de:'Kirchenplan – Hauptansicht','sr-lat':'Plan crkve – glavni pogled','sr-cyr':'План цркве – главни поглед'},b:{de:'Grundstück & Lageplan','sr-lat':'Parcela i plan','sr-cyr':'Парцела и план'},c:{de:'Gemeinschaftstreffen','sr-lat':'Skup zajednice','sr-cyr':'Скуп заједнице'},d:{de:'Spatenstich-Feier','sr-lat':'Kamen temeljac','sr-cyr':'Камен темељац'},e:{de:'Einweihung 2027','sr-lat':'Posvećenje 2027','sr-cyr':'Посвећење 2027'}};
+function openLb(k){document.getElementById('lb-title').textContent=lbls[k]?lbls[k][lang]||lbls[k].de:'';document.getElementById('lb').classList.add('open');}
+</script>
 </body>
 </html>
